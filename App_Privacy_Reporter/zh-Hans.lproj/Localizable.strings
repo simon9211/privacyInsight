@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  App_Privacy_Reporter
+
+  Created by xiwang wang on 2021/10/15.
+  
+*/
+
+// 页面
+"privacyReports" = "隐私报告";
+"fileAddTime: %@" = "添加时间: %@";
+"apps" = "应用列表";
+"search" = "查找应用";
+"buildingSummaryTips" = "请稍后，正在读取文件... ☕️";
+"hideApple" = "隐藏苹果应用";
+"bundleId: %@" = "软件标识符: %@";
+"privacyAccess" = "隐私访问";
+"networkAccess" = "网络活动";
+"privacyAccessTimeline" = "隐私访问时间线";
+"networkAccessTimeline" = "网络活动时间线";
+
+// 权限
+"location" = "定位";
+"photos" = "相册";
+"contacts" = "通讯录";
+"camera" = "相机";
+"microphone" = "麦克风";
+

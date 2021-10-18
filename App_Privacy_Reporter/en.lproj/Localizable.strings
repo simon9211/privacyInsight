@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  App_Privacy_Reporter
+
+  Created by xiwang wang on 2021/10/15.
+  
+*/
+
+// 页面
+"privacyReports" = "Privacy Reports";
+"apps" = "Apps";
+"buildingSummaryTips" = "Building your summary, please wait... ☕️";
+"search" = "Look for app";
+"hideApple" = "Hide Apple";
+"bundleId: %@" = "Bundle Identifier: %@";
+"privacyAccess" = "Privacy Access";
+"networkAccess" = "Network Access";
+"privacyAccessTimeline" = "Privacy Access Timeline";
+"networkAccessTimeline" = "Network Access Timeline";
+
+// 权限
+"location" = "Location";
+"photos" = "Photos";
+"contacts" = "Contacts";
+"camera" = "Camera";
+"microphone" = "Microphone";

@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Colorful",
+        "repositoryURL": "git@github.com:Co2333/Colorful.git",
+        "state": {
+          "branch": null,
+          "revision": "eb5a350aec759bd413615273cb6d64553aead4d5",
+          "version": "1.0.1"
+        }
+      },
+      {
+        "package": "Kingfisher",
+        "repositoryURL": "git@github.com:onevcat/Kingfisher.git",
+        "state": {
+          "branch": null,
+          "revision": "8c65ddf756c633d01d9ae01092bf72f0c66dfc60",
+          "version": "7.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
