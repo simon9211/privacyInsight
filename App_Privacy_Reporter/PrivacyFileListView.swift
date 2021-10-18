@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PrivacyFileListView: View {
-  @State var privacyFiles: [PrivacyFile] = loadFiles()
+  @State private var privacyFiles: [PrivacyFile] = []
   @State var showingProfile = false
   
   var addButton: some View {
@@ -32,6 +32,8 @@ struct PrivacyFileListView: View {
         .padding()
     }
   }
+  
+  //let pub = NotificationCenter.default.publisher(for: NSNotification.Name(uiapplicati))
   
   var body: some View {
     NavigationView {
@@ -63,6 +65,12 @@ struct PrivacyFileListView: View {
       } content: {
         Text("profile")
       }
+    }
+    .onAppear {
+      privacyFiles = loadFiles()
+    }
+    .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+      privacyFiles = loadFiles()
     }
   }
 }
