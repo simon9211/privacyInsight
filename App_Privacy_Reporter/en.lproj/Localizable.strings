@@ -29,7 +29,10 @@
 "3-1" = "Click **`Record App activity`**";
 "3-2" = "If it is not turned on, please **`enable the switch`** first, and then click **`Store App Activity`**";
 "4 %@" = "In the share menu, select **`%@`**";
-
+"ascending" = "Ascending";
+"descending" = "Descending";
+"numberOfPrivacy" = "Number of Privacy";
+"numberOfNetwork" = "Number of Network";
 
 // 权限
 "location" = "Location";

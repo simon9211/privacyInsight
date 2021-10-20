@@ -16,7 +16,7 @@ struct PrivacyAppList: View {
   
   @State var loading: Bool = false
   @State var progress: Progress = Progress()
-  @State var hideApple: Bool = true
+  @State var hideApple: Int = 0
   @State var insightReport: NDPrivacySummary?
   @State var appKeys: [String] = []
   @State var appSummarys: [AppSummary] = []
@@ -24,6 +24,8 @@ struct PrivacyAppList: View {
   @State var selectedApplication: NDPrivacySummary.NDApplicationSummary?
   @State var header: String = ""
   @State private var searchText = ""
+  @State private var sort: Int = 0
+  @State private var sortType: Int = 0
   
   var body: some View {
     VStack {
@@ -45,13 +47,6 @@ struct PrivacyAppList: View {
             Text(generateRecordRange())
               .font(.system(size: 10, weight: .semibold, design: .monospaced))
               .frame(width: UIScreen.screenWidth * 0.5)
-            Spacer()
-            VStack {
-              Text("hideApple")
-                .font(.system(size: 10))
-              Toggle("", isOn: $hideApple)
-                .labelsHidden()
-            }
           }
           ForEach(appKeys, id: \.self) { key in
             if let idx = appKeys.firstIndex(of: key),
@@ -86,7 +81,41 @@ struct PrivacyAppList: View {
         .onChange(of: searchText, perform: { s in
           rebuildKeys(filter: !searchText.isEmpty)
         })
-        //                .navigationBarItems(trailing: Toggle("Hide Apple", isOn: $hideApple))
+        .toolbar {
+          ToolbarItem(placement: .primaryAction) {
+            Menu {
+              let hide = Binding(
+                get: { self.hideApple },
+                set: { self.hideApple = $0 == self.hideApple ? -1 : $0 }
+              )
+              Picker(selection: hide, label: Text("Sorting options")) {
+                Label("hideApple", systemImage: "applelogo")
+                  .tag(0)
+              }
+              
+              Picker(selection: $sortType, label: Text("Sorting options")) {
+                Label("ascending", systemImage: "arrow.up")
+                  .tag(0)
+                Label("descending", systemImage: "arrow.down")
+                  .tag(1)
+              }
+              .onChange(of: sortType, perform: { typeValue in
+                
+              })
+              
+              Picker(selection: $sort, label: Text("Sorting options")) {
+                Label("numberOfPrivacy", systemImage: "hand.raised.fill")
+                  .tag(0)
+                
+                Label("numberOfNetwork", systemImage: "network")
+                  .tag(1)
+              }
+            }
+          label: {
+            Label("Sort", systemImage: "arrow.up.arrow.down")
+          }
+          }
+        }
       }
     }
     
@@ -259,7 +288,7 @@ struct PrivacyAppList: View {
       .applicationSummary
       .keys
       .sorted()
-    if hideApple {
+    if hideApple == 0 {
       debugPrint("hide apple")
       appKeys = origKeys
         .filter { !$0.lowercased().hasPrefix("com.apple") }
