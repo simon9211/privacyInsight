@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA0486EA271FC52900F26870 /* PravacyMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0486E9271FC52900F26870 /* PravacyMenuView.swift */; };
+		DA0486EC271FF4A300F26870 /* PrivacyLearnImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0486EB271FF4A300F26870 /* PrivacyLearnImportView.swift */; };
 		DA4CDAD927156474005CD7A0 /* PrivacyAppDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4CDAD827156474005CD7A0 /* PrivacyAppDetail.swift */; };
 		DA9100C927198D760044A650 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA9100CB27198D760044A650 /* Localizable.strings */; };
 		DA9100E4271C19E80044A650 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA9100E6271C19E80044A650 /* InfoPlist.strings */; };
@@ -59,6 +61,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DA0486E9271FC52900F26870 /* PravacyMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PravacyMenuView.swift; sourceTree = "<group>"; };
+		DA0486EB271FF4A300F26870 /* PrivacyLearnImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyLearnImportView.swift; sourceTree = "<group>"; };
 		DA4CDAD827156474005CD7A0 /* PrivacyAppDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyAppDetail.swift; sourceTree = "<group>"; };
 		DA4CDADC2717CFC3005CD7A0 /* App-Privacy-Reporter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "App-Privacy-Reporter-Info.plist"; sourceTree = SOURCE_ROOT; };
 		DA9100CA27198D760044A650 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -141,13 +145,14 @@
 				DAD5A0D72718166A00D08E6D /* SceneDelegate.swift */,
 				DAD5A0D52718162D00D08E6D /* AppDelegate.swift */,
 				DAC4ECA227113B24009784A3 /* PrivacyFileListView.swift */,
+				DA0486E9271FC52900F26870 /* PravacyMenuView.swift */,
+				DA0486EB271FF4A300F26870 /* PrivacyLearnImportView.swift */,
 				DAC4ECD2271149A3009784A3 /* PrivacyFileRow.swift */,
 				DAC4ECD927119B92009784A3 /* PrivacyAppList.swift */,
 				DA4CDAD827156474005CD7A0 /* PrivacyAppDetail.swift */,
 				DAC4ECDD2711A28F009784A3 /* AppSelector.swift */,
 				DAC4ECD0271140AE009784A3 /* DataModel.swift */,
 				DAC4ECD6271157FB009784A3 /* UserData.swift */,
-				DAC4ECD427115598009784A3 /* Resources */,
 				DAC4ECA427113B27009784A3 /* Assets.xcassets */,
 				DAC4ECA627113B27009784A3 /* Preview Content */,
 			);
@@ -177,13 +182,6 @@
 				DAC4ECBD27113B28009784A3 /* App_Privacy_ReporterUITestsLaunchTests.swift */,
 			);
 			path = App_Privacy_ReporterUITests;
-			sourceTree = "<group>";
-		};
-		DAC4ECD427115598009784A3 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +326,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA0486EA271FC52900F26870 /* PravacyMenuView.swift in Sources */,
+				DA0486EC271FF4A300F26870 /* PrivacyLearnImportView.swift in Sources */,
 				DAC4ECA327113B24009784A3 /* PrivacyFileListView.swift in Sources */,
 				DAC4ECD3271149A3009784A3 /* PrivacyFileRow.swift in Sources */,
 				DAC4ECDE2711A28F009784A3 /* AppSelector.swift in Sources */,
@@ -517,11 +517,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Developer: liwei zhang (S5PVLH66T5)";
+				CODE_SIGN_IDENTITY = "Apple Development: xiwang Wang (NDHD3JHB26)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"App_Privacy_Reporter/Preview Content\"";
-				DEVELOPMENT_TEAM = 22L8F5N2ZA;
+				DEVELOPMENT_TEAM = MDRU2J8RZG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "App-Privacy-Reporter-Info.plist";
@@ -539,9 +539,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simon.privacyInsight;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wxw.privacyInsight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = TestSinaPayApp;
+				PROVISIONING_PROFILE_SPECIFIER = dev_privacyInsight;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -554,11 +554,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Developer: liwei zhang (S5PVLH66T5)";
+				CODE_SIGN_IDENTITY = "Apple Development: xiwang Wang (NDHD3JHB26)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"App_Privacy_Reporter/Preview Content\"";
-				DEVELOPMENT_TEAM = 22L8F5N2ZA;
+				DEVELOPMENT_TEAM = MDRU2J8RZG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "App-Privacy-Reporter-Info.plist";
@@ -576,9 +576,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simon.privacyInsight;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wxw.privacyInsight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = TestSinaPayApp;
+				PROVISIONING_PROFILE_SPECIFIER = dev_privacyInsight;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

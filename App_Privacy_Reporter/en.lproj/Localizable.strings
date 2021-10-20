@@ -17,6 +17,19 @@
 "networkAccess" = "Network Access";
 "privacyAccessTimeline" = "Privacy Access Timeline";
 "networkAccessTimeline" = "Network Access Timeline";
+"learnImportFile" = "How to import privacy file?";
+"version %@" = "version %@";
+"about %@" = "About %@";
+"describe %@ %@" = "    %@ cannot protect user privacy, but you can find out whether other app has accessed your private data (location, contacts, camera, photos, microphone, and network requests). \n     As an app that finds out whether other app has access to privacy, %@complete Open source and transparent. \n    Open source address: https://github.com/simon9211/privacyInsight, welcome star🎉";
+"join Telegram group" = "[Join Telegram group](https://t.me/joinchat/mngFcJBVUzM1OTJl)";
+"privacy policy" = "[Privacy Policy](https://fresh-sunfish-65b.notion.site/Privacy-Reporter-254ab15cef684fba803f19bcedd159f9)";
+
+"1" = "Open **`System settings`**";
+"2" = "Click **`Privacy`**";
+"3-1" = "Click **`Record App activity`**";
+"3-2" = "If it is not turned on, please **`enable the switch`** first, and then click **`Store App Activity`**";
+"4 %@" = "In the share menu, select **`%@`**";
+
 
 // 权限
 "location" = "Location";

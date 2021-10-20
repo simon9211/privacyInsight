@@ -25,16 +25,19 @@ struct AppPrivacyReporterApp: App {
   
 }
 
-//extension UTType {
-//    static let ndjson = UTType(exportedAs: "com.ndjson")
-//}
-
 extension UIScreen{
   static let screenWidth = UIScreen.main.bounds.size.width
   static let screenHeight = UIScreen.main.bounds.size.height
   static let screenSize = UIScreen.main.bounds.size
 }
 
-//struct NdjsonFile: FileDocument {
-//    static var readableContentTypes = [UTType.data]
-//}
+extension UIApplication {
+  static var appVersion: String? {
+    return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+  }
+  
+  static var appName: String? {
+    return Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
+  }
+}
+

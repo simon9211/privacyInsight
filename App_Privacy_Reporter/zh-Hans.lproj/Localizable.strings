@@ -18,6 +18,19 @@
 "networkAccess" = "网络活动";
 "privacyAccessTimeline" = "隐私访问时间线";
 "networkAccessTimeline" = "网络活动时间线";
+"learnImportFile" = "学习如何导入文件";
+"version %@" = "版本 %@";
+"about %@" = "关于 %@";
+"describe %@ %@" = "    %@不能保护用户隐私，但是可以发现其它软件是否访问了您的隐私数据(位置、通讯录、相机、相册、麦克风及网络请求)，\n    作为一款发现其它软件是否访问隐私的软件，%@完全开源，透明。\n    开源地址：https://github.com/simon9211/privacyInsight ，欢迎star🎉";
+"join Telegram group" = "[加入Telegram群组](https://t.me/joinchat/mngFcJBVUzM1OTJl)";
+"privacy policy" = "[隐私政策](https://fresh-sunfish-65b.notion.site/ad79ee33da6b4090b0eeef0bed1e3a3d)";
+
+"1" = "打开 **`系统设置`**";
+"2" = "点击 **`隐私`**";
+"3-1" = "点击 **`记录App活动`**";
+"3-2" = "如果还没有打开，请先 **`打开开关`**, 然后点击 **`存储 App 活动`**";
+"4 %@" = "在分享选项中， 选择 **`%@`**";
+
 
 // 权限
 "location" = "定位";

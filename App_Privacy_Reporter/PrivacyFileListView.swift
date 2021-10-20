@@ -11,29 +11,16 @@ struct PrivacyFileListView: View {
   @State private var privacyFiles: [PrivacyFile] = []
   @State var showingProfile = false
   
-  var addButton: some View {
+  var menuButton: some View {
     Button(action: {
       self.showingProfile.toggle()
     }) {
-      Image(systemName: "plus.circle")
+      Image(systemName: "list.bullet.circle")
         .imageScale(.large)
-        .accessibility(label: Text("Import Privacy File"))
+        // .accessibility(label: Text("Import Privacy File"))
         .padding()
     }
   }
-  
-  var profileButton: some View {
-    Button(action: {
-      self.showingProfile.toggle()
-    }) {
-      Image(systemName: "person.crop.circle")
-        .imageScale(.large)
-        .accessibility(label: Text("User Profile"))
-        .padding()
-    }
-  }
-  
-  //let pub = NotificationCenter.default.publisher(for: NSNotification.Name(uiapplicati))
   
   var body: some View {
     NavigationView {
@@ -56,14 +43,12 @@ struct PrivacyFileListView: View {
         }
       }
       .navigationTitle(Text("privacyReports"))
-      .navigationBarItems(leading: addButton)
+      .navigationBarItems(leading: menuButton)
       .toolbar {
         EditButton()
       }
       .sheet(isPresented: $showingProfile) {
-        
-      } content: {
-        Text("profile")
+        PravacyMenuView()
       }
     }
     .onAppear {

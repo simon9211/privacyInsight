@@ -13,7 +13,7 @@
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.simon.privacyInsight.ndjson</string>
+				<string>com.wxw.privacyInsight.ndjson</string>
 			</array>
 		</dict>
 	</array>
@@ -29,7 +29,7 @@
 			<key>UTTypeIconFiles</key>
 			<array/>
 			<key>UTTypeIdentifier</key>
-			<string>com.simon.privacyInsight.ndjson</string>
+			<string>com.wxw.privacyInsight.ndjson</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -52,7 +52,7 @@
 			<key>UTTypeIconFiles</key>
 			<array/>
 			<key>UTTypeIdentifier</key>
-			<string>com.simon.privacyInsight.ndjson</string>
+			<string>com.wxw.privacyInsight.ndjson</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
