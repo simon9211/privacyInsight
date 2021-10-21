@@ -14,14 +14,14 @@ struct ApplicationView: View {
     let instructedHeight: CGFloat = 35
     
     @State var app: NDPrivacySummary.NDApplicationSummary
-    @State var appSummary: AppSummary
+    @State var appSummary: AppSummary?
 //    @State var avatarImage: KFImage?
 //    @State var appName: String?
     
     var body: some View {
         HStack {
             ZStack {
-                if let avatarImage = appSummary.avatarImage {
+              if let avatarImage = appSummary?.avatarImage {
                     avatarImage
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -38,7 +38,7 @@ struct ApplicationView: View {
             }
             .frame(width: instructedHeight, height: instructedHeight)
             VStack(alignment: .leading, spacing: 6) {
-                Text(appSummary.appName ?? "[? Application]")
+                Text(appSummary?.appName ?? "[? Application]")
                     .font(.system(size: 14, weight: .semibold, design: .rounded))
                 HStack(spacing: 0) {
                     Text(app.bundleIdentifier)

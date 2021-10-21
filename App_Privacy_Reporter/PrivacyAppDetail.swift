@@ -28,7 +28,7 @@ private func localizedDate(from8601Date str: String) -> String {
 struct PrivacyAppDetail: View {
     
     @State var app: NDPrivacySummary.NDApplicationSummary
-    @State var appSummary: AppSummary
+    @State var appSummary: AppSummary?
     @State var folderPrivacys: Bool = false
     @State var folderNetworks: Bool = false
     
@@ -36,7 +36,7 @@ struct PrivacyAppDetail: View {
         VStack {
             LazyVStack {
                 HStack {
-                    if let avatarImage = appSummary.avatarImage {
+                    if let avatarImage = appSummary?.avatarImage {
                         avatarImage
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -52,14 +52,14 @@ struct PrivacyAppDetail: View {
                     }
                     
                     VStack (alignment: .leading, content: {
-                        Text(appSummary.appName ?? "")
+                        Text(appSummary?.appName ?? "")
                             .font(.system(size: 20, weight: .bold))
                             .foregroundColor(.black)
                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
-                        Text(appSummary.sellerName ?? "")
+                        Text(appSummary?.sellerName ?? "")
                             .font(.system(size: 16))
                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0))
-                      Text("bundleId: \(appSummary.bundleIdentifier)")
+                      Text("bundleId: \(app.bundleIdentifier)")
                             .font(.system(size: 16))
                     })
                 }
@@ -204,6 +204,6 @@ struct PrivacyAppDetail: View {
 struct PrivacyAppDetail_Previews: PreviewProvider {
     static var previews: some View {
         let app = NDPrivacySummary.NDApplicationSummary(bundleIdentifier: "122", reportPrivacyElement: [NDPrivacyAccess(accessor: NDAccessor(identifier: "1", identifierType: "1"), category: "2", identifier: "2", kind: "3", timeStamp: "3", type: "3")], reportNetworkElement: [NDNetworkAccess(domain: "1", firstTimeStamp: "2", context: "3", timeStamp: "4", domainType: 2, initiatedType: "4", hits: 1, type: "5", domainOwner: "5", bundleid: "1")])
-        PrivacyAppDetail(app: app, appSummary: AppSummary(bundleIdentifier: "com.alipay.com", appName: "支付宝 - 生活好支付宝", avatarImage: nil, sellerName: "杭州支付宝科技有限公司"))
+        PrivacyAppDetail(app: app, appSummary: AppSummary(bundleIdentifier: "com.alipay.com", appName: "支付宝 - 生活好支付宝", avatarImage: nil, sellerName: "杭州支付宝科技有限公司", privacyCount: 12, networkCount: 22))
     }
 }

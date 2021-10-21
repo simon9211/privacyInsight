@@ -18,8 +18,9 @@ struct PrivacyAppList: View {
   @State var progress: Progress = Progress()
   @State var hideApple: Int = 0
   @State var insightReport: NDPrivacySummary?
-  @State var appKeys: [String] = []
+//  @State var appKeys: [String] = []
   @State var appSummarys: [AppSummary] = []
+  @State var renderAppSummarys: [AppSummary] = []
   @State var highlightIndex: Int?
   @State var selectedApplication: NDPrivacySummary.NDApplicationSummary?
   @State var header: String = ""
@@ -48,38 +49,62 @@ struct PrivacyAppList: View {
               .font(.system(size: 10, weight: .semibold, design: .monospaced))
               .frame(width: UIScreen.screenWidth * 0.5)
           }
-          ForEach(appKeys, id: \.self) { key in
-            if let idx = appKeys.firstIndex(of: key),
-               let app = insightReport.applicationSummary[key],
-               let appSummary = appSummarys.first(where: { $0.bundleIdentifier == key})
-            {
+          ForEach(renderAppSummarys, id: \.id) { appSummary in
+            if let app = insightReport.applicationSummary[appSummary.bundleIdentifier]{
               NavigationLink(destination: PrivacyAppDetail(app: app, appSummary: appSummary)) {
                 ApplicationView(app: app, appSummary: appSummary)
                   .padding(4)
-                  .onHover { hover in
-                    highlightIndex = hover ? idx : nil
+                  .scaleEffect(1)
+//                    .background(
+//                      Color
+//                        .yellow
+//                        .cornerRadius(8)
+//                        .opacity(0.2)
+//                    )
+                  .onTapGesture {
+                    selectedApplication = app
                   }
-                  .scaleEffect(idx == highlightIndex ? 1.02 : 1)
-                  .background(
-                    Color
-                      .yellow
-                      .opacity(idx == highlightIndex ? 0.2 : 0)
-                      .cornerRadius(8)
-                  )
                   .animation(.interactiveSpring(), value: highlightIndex)
                   .onTapGesture {
                     selectedApplication = app
                   }
                   .padding(.horizontal, 8)
               }
-              
+                
             }
           }
+//          ForEach(appKeys, id: \.self) { key in
+//            if let idx = appKeys.firstIndex(of: key),
+//               let app = insightReport.applicationSummary[key],
+//               let appSummary = appSummarys.first(where: { $0.bundleIdentifier == key})
+//            {
+//              NavigationLink(destination: PrivacyAppDetail(app: app, appSummary: appSummary)) {
+//                ApplicationView(app: app, appSummary: appSummary)
+//                  .padding(4)
+//                  .onHover { hover in
+//                    highlightIndex = hover ? idx : nil
+//                  }
+//                  .scaleEffect(idx == highlightIndex ? 1.02 : 1)
+//                  .background(
+//                    Color
+//                      .yellow
+//                      .opacity(idx == highlightIndex ? 0.2 : 0)
+//                      .cornerRadius(8)
+//                  )
+//                  .animation(.interactiveSpring(), value: highlightIndex)
+//                  .onTapGesture {
+//                    selectedApplication = app
+//                  }
+//                  .padding(.horizontal, 8)
+//              }
+//
+//            }
+//          }
         }
         .searchable(text: $searchText, prompt: "search")
         .navigationTitle(Text("apps"))
         .onChange(of: searchText, perform: { s in
-          rebuildKeys(filter: !searchText.isEmpty)
+          rebuildSummarys(filter: !searchText.isEmpty)
         })
         .toolbar {
           ToolbarItem(placement: .primaryAction) {
@@ -100,7 +125,7 @@ struct PrivacyAppList: View {
                   .tag(1)
               }
               .onChange(of: sortType, perform: { typeValue in
-                
+                rebuildSummarys()
               })
               
               Picker(selection: $sort, label: Text("Sorting options")) {
@@ -110,6 +135,9 @@ struct PrivacyAppList: View {
                 Label("numberOfNetwork", systemImage: "network")
                   .tag(1)
               }
+              .onChange(of: sort, perform: { typeValue in
+                rebuildSummarys()
+              })
             }
           label: {
             Label("Sort", systemImage: "arrow.up.arrow.down")
@@ -120,13 +148,12 @@ struct PrivacyAppList: View {
     }
     
     .onChange(of: hideApple, perform: { _ in
-      rebuildKeys()
+      rebuildSummarys()
     })
     .onAppear {
       if let insightReportCache = appListCache[file.name] {
         insightReport = insightReportCache
         loading = false
-        rebuildKeys()
         prepareApplicationInfo()
       } else {
         loading = true
@@ -194,7 +221,6 @@ struct PrivacyAppList: View {
       insightReport = summary
       appListCache[file.name] = summary
       loading = false
-      rebuildKeys()
       prepareApplicationInfo()
       //insightReader = AppSelector(insightReport: summary)
     }
@@ -206,22 +232,22 @@ struct PrivacyAppList: View {
       appSummarys = summaryCache
       return
     }
-    
     var apps: [AppSummary] = []
-    appKeys.forEach{ app in
+    insightReport?.applicationSummary.forEach{ app in
       DispatchQueue.global().async {
-        guard let queryIdUrl = URL(string: "https://itunes.apple.com/lookup?bundleId=\(app)") else {
-          debugPrint("could not load \(app)")
+        guard let queryIdUrl = URL(string: "https://itunes.apple.com/lookup?bundleId=\(app.key)") else {
+          debugPrint("could not load \(app.key)")
           return
         }
         if let cache = appStoreQueryCache[queryIdUrl],
            let apiResult = try? ASAPIResult(cache).results?.first {
           debugPrint("[i] Cached application \(app) => \(apiResult.trackName ?? "nope!")")
-          let appSummary = AppSummary(bundleIdentifier: app, appName: apiResult.trackName , avatarImage: KFImage(URL(string: apiResult.artworkUrl60 ?? "")), sellerName: apiResult.sellerName)
+          let appSummary = AppSummary(bundleIdentifier: app.key, appName: apiResult.trackName , avatarImage: KFImage(URL(string: apiResult.artworkUrl60 ?? "")), sellerName: apiResult.sellerName, privacyCount: app.value.reportPrivacyElement.count, networkCount: app.value.reportNetworkElement.count)
           apps.append(appSummary)
           DispatchQueue.main.async {
             appSummarys = apps
             appSummaryCache[file.name] = apps
+            rebuildSummarys()
           }
           return
         }
@@ -233,11 +259,12 @@ struct PrivacyAppList: View {
                let apiResult = try? ASAPIResult(str).results?.first {
               appStoreQueryCache[queryIdUrl] = str
               debugPrint("[i] Loaded application \(app) => \(apiResult.trackName ?? "nope!")")
-              let appSummary = AppSummary(bundleIdentifier: app, appName: apiResult.trackName , avatarImage: KFImage(URL(string: apiResult.artworkUrl60 ?? "")), sellerName: apiResult.sellerName)
+              let appSummary = AppSummary(bundleIdentifier: app.key, appName: apiResult.trackName , avatarImage: KFImage(URL(string: apiResult.artworkUrl60 ?? "")), sellerName: apiResult.sellerName,privacyCount: app.value.reportPrivacyElement.count, networkCount: app.value.reportNetworkElement.count)
               apps.append(appSummary)
               DispatchQueue.main.async {
                 appSummarys = apps
                 appSummaryCache[file.name] = apps
+                rebuildSummarys()
               }
             }
           }
@@ -283,30 +310,45 @@ struct PrivacyAppList: View {
                                   timeStyle: .medium)
   }
   
-  func rebuildKeys(filter: Bool = false) {
-    let origKeys = insightReport!
-      .applicationSummary
-      .keys
-      .sorted()
+  func rebuildSummarys(filter: Bool = false) {
+    let origSummary = appSummarys
+      .sorted { s1, s2 in
+        if sort == 0 {
+          //隐私数量
+          if sortType == 0 {
+            return  s1.privacyCount > s2.privacyCount
+          } else {
+            return  s1.privacyCount < s2.privacyCount
+          }
+          
+        } else {
+          if sortType == 0 {
+            return  s1.networkCount > s2.networkCount
+          } else {
+            return  s1.networkCount < s2.networkCount
+          }
+        }
+      }
+    
     if hideApple == 0 {
       debugPrint("hide apple")
-      appKeys = origKeys
-        .filter { !$0.lowercased().hasPrefix("com.apple") }
+      renderAppSummarys = origSummary
+        .filter { !($0.bundleIdentifier.lowercased().hasPrefix("com.apple") || $0.bundleIdentifier.lowercased().hasPrefix("developer.")) }
     } else {
       debugPrint("unhide apple")
-      appKeys = origKeys
+      renderAppSummarys = origSummary
     }
     
     if filter {
-      var newAppKeys: [String] = []
+      var newAppSummary: [AppSummary] = []
       debugPrint("searchText \(searchText)")
-      appSummarys.forEach { appSummary in
+      renderAppSummarys.forEach { appSummary in
         debugPrint("appSummary.appName?.contains(searchText)): \(String(describing: appSummary.appName?.contains(searchText)))")
-        if appKeys.contains(appSummary.bundleIdentifier) && ((appSummary.appName!.contains(searchText))){
-          newAppKeys.append(appSummary.bundleIdentifier)
+        if ((appSummary.appName!.contains(searchText))){
+          newAppSummary.append(appSummary)
         }
       }
-      appKeys = newAppKeys
+      renderAppSummarys = newAppSummary
     }
   }
 }
