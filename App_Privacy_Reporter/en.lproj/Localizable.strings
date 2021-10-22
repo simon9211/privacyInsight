@@ -9,6 +9,7 @@
 // 页面
 "privacyReports" = "Privacy Reports";
 "apps" = "Apps";
+"fileAddTime: %@" = "File added time: %@";
 "buildingSummaryTips" = "Building your summary, please wait... ☕️";
 "search" = "Look for app";
 "hideApple" = "Hide Apple";

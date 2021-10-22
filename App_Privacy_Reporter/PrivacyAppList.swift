@@ -47,7 +47,6 @@ struct PrivacyAppList: View {
           HStack {
             Text(generateRecordRange())
               .font(.system(size: 10, weight: .semibold, design: .monospaced))
-              .frame(width: UIScreen.screenWidth * 0.5)
           }
           ForEach(renderAppSummarys, id: \.id) { appSummary in
             if let app = insightReport.applicationSummary[appSummary.bundleIdentifier]{
@@ -55,12 +54,6 @@ struct PrivacyAppList: View {
                 ApplicationView(app: app, appSummary: appSummary)
                   .padding(4)
                   .scaleEffect(1)
-//                    .background(
-//                      Color
-//                        .yellow
-//                        .cornerRadius(8)
-//                        .opacity(0.2)
-//                    )
                   .onTapGesture {
                     selectedApplication = app
                   }
@@ -333,7 +326,7 @@ struct PrivacyAppList: View {
     if hideApple == 0 {
       debugPrint("hide apple")
       renderAppSummarys = origSummary
-        .filter { !($0.bundleIdentifier.lowercased().hasPrefix("com.apple") || $0.bundleIdentifier.lowercased().hasPrefix("developer.")) }
+        .filter { !$0.bundleIdentifier.lowercased().contains(".apple.") }
     } else {
       debugPrint("unhide apple")
       renderAppSummarys = origSummary

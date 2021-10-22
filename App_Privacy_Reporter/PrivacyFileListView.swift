@@ -17,7 +17,6 @@ struct PrivacyFileListView: View {
     }) {
       Image(systemName: "list.bullet.circle")
         .imageScale(.large)
-        // .accessibility(label: Text("Import Privacy File"))
         .padding()
     }
   }
@@ -34,6 +33,8 @@ struct PrivacyFileListView: View {
           offsets.sorted(by: > ).forEach { (i) in
             do {
               try FileManager.default.removeItem(at: URL(string: "file://" + privacyFiles[i].path)!)
+              appListCache.removeValue(forKey: privacyFiles[i].name)
+              appSummaryCache.removeValue(forKey: privacyFiles[i].name)
             } catch  {
               print(error.localizedDescription)
               //@throw NSException(name: NSExceptionName(rawValue: "ERROR"), reason: error.localizedDescription, userInfo: nil) as! Error
