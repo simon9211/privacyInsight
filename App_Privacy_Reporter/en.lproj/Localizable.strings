@@ -21,7 +21,7 @@
 "learnImportFile" = "How to import privacy file?";
 "version %@" = "version %@";
 "about %@" = "About %@";
-"describe %@ %@" = "    %@ cannot protect user privacy, but you can find out whether other app has accessed your private data (location, contacts, camera, photos, microphone, and network requests). \n     As an app that finds out whether other app has access to privacy, %@complete Open source and transparent. \n    Open source address: https://github.com/simon9211/privacyInsight, welcome star🎉";
+"describe %@ %@" = "    %@ cannot protect user privacy, but you can find out whether other app has accessed your private data (location, contacts, camera, photos, microphone, and network requests). \n     As an app that finds out whether other app has access to privacy, %@ complete Open source and transparent. \n    Open source address: https://github.com/simon9211/privacyInsight, welcome star🎉";
 "join Telegram group" = "[Join Telegram group](https://t.me/joinchat/mngFcJBVUzM1OTJl)";
 "privacy policy" = "[Privacy Policy](https://fresh-sunfish-65b.notion.site/Privacy-Reporter-254ab15cef684fba803f19bcedd159f9)";
 
