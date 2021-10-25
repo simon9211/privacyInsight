@@ -9,6 +9,7 @@
 // 页面
 "privacyReports" = "隐私报告";
 "fileAddTime: %@" = "添加时间: %@";
+"noPrivacyFile" = "您还没导入隐私报告，点击左上角菜单查看如何导入";
 "apps" = "应用列表";
 "search" = "查找应用";
 "buildingSummaryTips" = "请稍后，正在读取文件... ☕️";

@@ -23,31 +23,39 @@ struct PrivacyFileListView: View {
   
   var body: some View {
     NavigationView {
-      List {
-        ForEach(privacyFiles) { privacy in
-          NavigationLink(destination: PrivacyAppList(file: privacy)) {
-            PrivacyFileRow(name: privacy.name, size: privacy.size, time: privacy.time)
-          }
-        }
-        .onDelete { offsets in
-          offsets.sorted(by: > ).forEach { (i) in
-            do {
-              try FileManager.default.removeItem(at: URL(string: "file://" + privacyFiles[i].path)!)
-              appListCache.removeValue(forKey: privacyFiles[i].name)
-              appSummaryCache.removeValue(forKey: privacyFiles[i].name)
-            } catch  {
-              print(error.localizedDescription)
-              //@throw NSException(name: NSExceptionName(rawValue: "ERROR"), reason: error.localizedDescription, userInfo: nil) as! Error
+      VStack {
+        if privacyFiles.isEmpty {
+          Text("noPrivacyFile")
+            .padding()
+            .multilineTextAlignment(.center)
+        } else {
+          List {
+            ForEach(privacyFiles) { privacy in
+              NavigationLink(destination: PrivacyAppList(file: privacy)) {
+                PrivacyFileRow(name: privacy.name, size: privacy.size, time: privacy.time)
+              }
+            }
+            .onDelete { offsets in
+              offsets.sorted(by: > ).forEach { (i) in
+                do {
+                  try FileManager.default.removeItem(at: URL(string: "file://" + privacyFiles[i].path)!)
+                  appListCache.removeValue(forKey: privacyFiles[i].name)
+                  appSummaryCache.removeValue(forKey: privacyFiles[i].name)
+                } catch  {
+                  print(error.localizedDescription)
+                  //@throw NSException(name: NSExceptionName(rawValue: "ERROR"), reason: error.localizedDescription, userInfo: nil) as! Error
+                }
+              }
+              privacyFiles.remove(atOffsets: offsets)
             }
           }
-          privacyFiles.remove(atOffsets: offsets)
+          .toolbar {
+              EditButton()
+          }
         }
       }
       .navigationTitle(Text("privacyReports"))
       .navigationBarItems(leading: menuButton)
-      .toolbar {
-        EditButton()
-      }
       .sheet(isPresented: $showingProfile) {
         PravacyMenuView()
       }

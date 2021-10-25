@@ -21,7 +21,6 @@ struct PrivacyAppList: View {
 //  @State var appKeys: [String] = []
   @State var appSummarys: [AppSummary] = []
   @State var renderAppSummarys: [AppSummary] = []
-  @State var highlightIndex: Int?
   @State var selectedApplication: NDPrivacySummary.NDApplicationSummary?
   @State var header: String = ""
   @State private var searchText = ""
@@ -57,7 +56,6 @@ struct PrivacyAppList: View {
                   .onTapGesture {
                     selectedApplication = app
                   }
-                  .animation(.interactiveSpring(), value: highlightIndex)
                   .onTapGesture {
                     selectedApplication = app
                   }
@@ -66,33 +64,6 @@ struct PrivacyAppList: View {
                 
             }
           }
-//          ForEach(appKeys, id: \.self) { key in
-//            if let idx = appKeys.firstIndex(of: key),
-//               let app = insightReport.applicationSummary[key],
-//               let appSummary = appSummarys.first(where: { $0.bundleIdentifier == key})
-//            {
-//              NavigationLink(destination: PrivacyAppDetail(app: app, appSummary: appSummary)) {
-//                ApplicationView(app: app, appSummary: appSummary)
-//                  .padding(4)
-//                  .onHover { hover in
-//                    highlightIndex = hover ? idx : nil
-//                  }
-//                  .scaleEffect(idx == highlightIndex ? 1.02 : 1)
-//                  .background(
-//                    Color
-//                      .yellow
-//                      .opacity(idx == highlightIndex ? 0.2 : 0)
-//                      .cornerRadius(8)
-//                  )
-//                  .animation(.interactiveSpring(), value: highlightIndex)
-//                  .onTapGesture {
-//                    selectedApplication = app
-//                  }
-//                  .padding(.horizontal, 8)
-//              }
-//
-//            }
-//          }
         }
         .searchable(text: $searchText, prompt: "search")
         .navigationTitle(Text("apps"))

@@ -9,6 +9,7 @@
 // 页面
 "privacyReports" = "Privacy Reports";
 "apps" = "Apps";
+"noPrivacyFile" = "You have not imported the file, click the menu button in the upper left corner to see how to import the file";
 "fileAddTime: %@" = "File added time: %@";
 "buildingSummaryTips" = "Building your summary, please wait... ☕️";
 "search" = "Look for app";

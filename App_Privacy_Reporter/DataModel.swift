@@ -20,6 +20,15 @@ import Foundation
 import SwiftUI
 import Kingfisher
 
+public struct DPNDPrivacyAccess: Codable, Hashable {
+  public let accessor: NDAccessor
+  public let category: String
+  public let identifier: String
+  public let beginTimeStamp: String
+  public let endTimeStamp: String
+  public let type: String
+}
+
 public struct AppSummary: Identifiable {
   public var id = UUID()
   let bundleIdentifier: String
@@ -28,7 +37,6 @@ public struct AppSummary: Identifiable {
   let sellerName: String?
   let privacyCount: Int
   let networkCount: Int
-  
 }
 
 
