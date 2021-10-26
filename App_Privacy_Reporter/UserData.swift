@@ -16,8 +16,8 @@ final class UserData: ObservableObject {
 
 func loadFiles() ->[PrivacyFile] {
   var res: [PrivacyFile] = []
-  let inboxDirPath = NSHomeDirectory() + "/Documents/Inbox" //FileManager.documentsDirectoryURL
-  print(inboxDirPath)
+  let inboxDirPath = NSHomeDirectory() + "/Documents/Inbox"
+//  print(inboxDirPath)
   do {
     let paths = try FileManager.default.contentsOfDirectory(atPath: inboxDirPath)
     if (paths.count > 0) {
@@ -33,7 +33,7 @@ func loadFiles() ->[PrivacyFile] {
         let file = PrivacyFile(name: itemPath, time:(dateFormatter.string(from: fullPath.creationDate!)), size: "\(fullPath.fileSize / 1024)kb", path: fullPath.absoluteString)
         
         res.append(file)
-        print(itemPath);
+//        print(itemPath);
       }
       
     }

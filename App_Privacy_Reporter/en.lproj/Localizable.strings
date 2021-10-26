@@ -36,6 +36,9 @@
 "numberOfPrivacy" = "Number of Privacy";
 "numberOfNetwork" = "Number of Network";
 
+"begin: %@" = "begin: %@";
+"end: %@" = "  end: %@";
+
 // 权限
 "location" = "Location";
 "photos" = "Photos";

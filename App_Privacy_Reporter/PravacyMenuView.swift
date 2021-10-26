@@ -23,7 +23,7 @@ struct PravacyMenuView: View {
       Section {
         VStack(alignment: HorizontalAlignment.leading) {
           Text("version \(UIApplication.appVersion!)")
-            .padding()
+            .padding(5)
           Divider()
           Text("describe \(UIApplication.appName!) \(UIApplication.appName!)")
             .lineSpacing(5.0)

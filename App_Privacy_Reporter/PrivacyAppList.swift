@@ -295,19 +295,15 @@ struct PrivacyAppList: View {
       }
     
     if hideApple == 0 {
-      debugPrint("hide apple")
       renderAppSummarys = origSummary
         .filter { !$0.bundleIdentifier.lowercased().contains(".apple.") }
     } else {
-      debugPrint("unhide apple")
       renderAppSummarys = origSummary
     }
     
     if filter {
       var newAppSummary: [AppSummary] = []
-      debugPrint("searchText \(searchText)")
       renderAppSummarys.forEach { appSummary in
-        debugPrint("appSummary.appName?.contains(searchText)): \(String(describing: appSummary.appName?.contains(searchText)))")
         if ((appSummary.appName!.contains(searchText))){
           newAppSummary.append(appSummary)
         }

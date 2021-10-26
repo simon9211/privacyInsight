@@ -37,6 +37,9 @@
 "numberOfPrivacy" = "访问隐私权限次数";
 "numberOfNetwork" = "网络请求次数";
 
+"begin: %@" = "开始: %@";
+"end: %@" = "结束: %@";
+
 
 // 权限
 "location" = "定位";

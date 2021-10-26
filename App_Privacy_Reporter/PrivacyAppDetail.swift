@@ -69,7 +69,7 @@ struct PrivacyAppDetail: View {
             HStack {
               Image(systemName: "hand.raised.slash.fill")
                 .font(.system(size: 20, weight: .regular, design: .rounded))
-              Text("\(app.reportPrivacyElement.count)")
+              Text("\(app.reportPrivacyElement.count / 2)")
                 .font(.system(size: 30, weight: .bold))
             }
             Spacer()
@@ -142,9 +142,9 @@ struct PrivacyAppDetail: View {
                       Text(LocalizedStringKey(privacy.category))
                         .font(.system(size: 12, weight: .semibold, design: .default))
                     }
-                    Text("begin: \(localizedDate(from8601Date: privacy.beginTimeStamp ?? ""))")
+                    Text("begin: \(localizedDate(from8601Date: privacy.beginTimeStamp ))")
                       .font(.system(size: 8, weight: .semibold, design: .monospaced))
-                    Text("end: \(localizedDate(from8601Date: privacy.endTimeStamp ?? ""))")
+                    Text("end: \(localizedDate(from8601Date: privacy.endTimeStamp ))")
                       .font(.system(size: 8, weight: .semibold, design: .monospaced))
                   }
                 }
