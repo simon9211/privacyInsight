@@ -47,7 +47,7 @@ struct ApplicationView: View {
                     HStack(spacing: 2) {
                         Image(systemName: "hand.raised.fill")
                             .font(.system(size: 8, weight: .regular, design: .rounded))
-                        Text("\(app.reportPrivacyElement.count)")
+                        Text("\(app.reportPrivacyElement.count / 2)")
                             .minimumScaleFactor(0.5)
                         Spacer()
                     }
